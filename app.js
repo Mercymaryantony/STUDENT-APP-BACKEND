@@ -8,7 +8,15 @@ app.use(express.json())
 mongoose.connect("mongodb+srv://mercy1112:mercy1112@cluster0.8x8j3ya.mongodb.net/studentDB?retryWrites=true&w=majority&appName=Cluster0")
 
 app.get("/view",(req,res)=>{
-    res.send("VIEW")
+    studentmodel.find().then(
+        (data)=>{
+            res.send(data)
+        }
+    ).catch(
+        (error)=>{
+            res.send("error")
+        }
+    )
 })
 
 app.post("/search",(req,res)=>{
