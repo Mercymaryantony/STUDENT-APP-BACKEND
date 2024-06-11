@@ -5,7 +5,7 @@ const app = express()
 const {studentmodel} = require("./models/student")
 app.use(cors())
 app.use(express.json())
-
+mongoose.connect("mongodb+srv://mercy1112:mercy1112@cluster0.8x8j3ya.mongodb.net/studentDB?retryWrites=true&w=majority&appName=Cluster0")
 
 app.get("/view",(req,res)=>{
     res.send("VIEW")
@@ -24,7 +24,7 @@ app.post("/add",(req,res)=>{
     let student =new studentmodel(input)
     console.log(student)
     student.save()
-    res.send("ADD")
+    res.send({"status":"ADD"})
 })
 
 app.post("/delete",(req,res)=>{
